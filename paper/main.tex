@@ -1,0 +1,101 @@
+\documentclass{ieeeaccess}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{booktabs}
+
+\usepackage{bm}
+\makeatletter
+\AtBeginDocument{\DeclareMathVersion{bold}
+\SetSymbolFont{operators}{bold}{T1}{times}{b}{n}
+\SetSymbolFont{NewLetters}{bold}{T1}{times}{b}{it}
+\SetMathAlphabet{\mathrm}{bold}{T1}{times}{b}{n}
+\SetMathAlphabet{\mathit}{bold}{T1}{times}{b}{it}
+\SetMathAlphabet{\mathbf}{bold}{T1}{times}{b}{n}
+\SetMathAlphabet{\mathtt}{bold}{OT1}{pcr}{b}{n}
+\SetSymbolFont{symbols}{bold}{OMS}{cmsy}{b}{n}
+\renewcommand\boldmath{\@nomath\boldmath\mathversion{bold}}}
+\makeatother
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+\history{Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.}
+\doi{10.1109/ACCESS.2026.0000000}
+
+\title{Recoverability-Aware Healing: Pilot-Guided Allocation of Data Mixture and Adaptation Scope for Depth-Pruned Small Language Models}
+
+% TODO (authors): real names, affiliations, e-mails, ORCID of the submitting author.
+\author{\uppercase{Piyush Dhoka}\authorrefmark{1},
+and \uppercase{Second Author}\authorrefmark{2}}
+
+\address[1]{Department, Organization, City, India (e-mail: author@domain)}
+\address[2]{Department, Organization, City, India (e-mail: author@domain)}
+\tfootnote{This work received no external funding.}
+
+\markboth
+{Dhoka \headeretal: Recoverability-Aware Healing of Depth-Pruned Small Language Models}
+{Dhoka \headeretal: Recoverability-Aware Healing of Depth-Pruned Small Language Models}
+
+\corresp{Corresponding author: Piyush Dhoka (e-mail: author@domain).}
+
+\begin{abstract}
+Removing whole Transformer blocks, known as depth pruning, is a simple way to shrink small instruction-tuned language models for edge and low-cost deployment, but it damages different capabilities by very different amounts, and the short fine-tuning run that follows, called healing, has a fixed token budget. Current practice spreads that budget uniformly over a generic mixture or in proportion to how damaged each capability is. We argue that the budget should instead follow how recoverable each capability is. Recoverability-aware healing fits, from a few cheap pilot runs, a recovery curve for every capability together with a transfer matrix that captures how data for one capability helps another, and then solves a small concave program that jointly chooses the data mixture and the adaptation scope inside a trust region that forbids extrapolation beyond the pilots. We evaluate six capabilities, namely structured output, function calling, instruction following, mathematical reasoning, safety refusal, and knowledge, on four model families with one to two billion parameters pruned by Block Influence, using three seeds and paired bootstrap tests. The order in which capabilities break is highly consistent across families, but damage does not predict recovery speed. At an equal budget, the proposed allocation is never worse than uniform healing on mean retention, raises the worst-retained capability by up to seventeen points on two families, reduces over-refusal on three, and beats damage-proportional allocation on two families while matching it on the other two. Pilot-free proxies and worst-case objectives did not work, and we report them as negative results. Code and all results are released.
+\end{abstract}
+
+\begin{keywords}
+Depth pruning, function calling, instruction-tuned language models, layer pruning, low-rank adaptation, model compression, parameter-efficient fine-tuning, small language models, structured pruning.
+\end{keywords}
+
+\titlepgskip=-21pt
+
+\maketitle
+
+\section{Introduction}
+\label{sec:introduction}
+\PARstart{S}{mall} instruction-tuned language models are what actually ships on phones, laptops and low-cost cloud instances. TODO.
+
+\section{Related Work}
+\label{sec:related}
+TODO.
+
+\section{Problem Setting}
+\label{sec:setting}
+TODO.
+
+\section{Recoverability-Aware Healing}
+\label{sec:method}
+TODO.
+
+\section{Experimental Setup}
+\label{sec:setup}
+TODO.
+
+\section{Results}
+\label{sec:results}
+TODO.
+
+\section{Discussion}
+\label{sec:discussion}
+TODO.
+
+\section{Conclusion}
+\label{sec:conclusion}
+TODO.
+
+\section*{Acknowledgment}
+TODO: IEEE-required disclosure of AI-assisted text, per the IEEE submission and peer review policies.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\begin{IEEEbiographynophoto}{Piyush Dhoka}
+TODO (100--150 words).
+\end{IEEEbiographynophoto}
+
+\EOD
+
+\end{document}
