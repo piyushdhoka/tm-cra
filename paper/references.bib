@@ -1,25 +1,487 @@
+% ---------------------------------------------------------------------------
+% Verified bibliography for the IEEE Access article on healing (recovery
+% fine-tuning) of depth-pruned small language models.
+% Verified against primary sources on Oct. 7, 2026 (arXiv API/abstract pages,
+% ACL Anthology, PMLR, NeurIPS/ICLR/MLSys proceedings sites, Crossref,
+% Zenodo, Hugging Face, GitHub).  See refs_report.md for per-key evidence.
+% Intended for IEEEtran.bst.  Pure ASCII; non-ASCII letters are TeX-escaped.
+% ---------------------------------------------------------------------------
+
+% ======================= Depth / layer pruning =============================
+
 @inproceedings{men2024shortgpt,
+  author    = {Men, Xin and Xu, Mingyu and Zhang, Qingyu and Yuan, Qianhao and Wang, Bingning and Lin, Hongyu and Lu, Yaojie and Han, Xianpei and Chen, Weipeng},
   title     = {{ShortGPT}: Layers in Large Language Models are More Redundant Than You Expect},
-  author    = {Men, Xin and Xu, Mingyu and Zhang, Qingyu and Wang, Bingning and Lin, Hongyu and Lu, Yaojie and Han, Xianpei and Chen, Weipeng},
-  booktitle = {arXiv preprint arXiv:2403.03853},
-  year      = {2024}
+  booktitle = {Findings Assoc. Comput. Linguist.: ACL 2025},
+  month     = jul,
+  year      = {2025},
+  pages     = {20192--20204},
+  doi       = {10.18653/v1/2025.findings-acl.1035},
+  note      = {arXiv:2403.03853},
 }
+
 @inproceedings{gromov2024unreasonable,
-  title     = {The Unreasonable Ineffectiveness of the Deeper Layers},
   author    = {Gromov, Andrey and Tirumala, Kushal and Shapourian, Hassan and Glorioso, Paolo and Roberts, Daniel A.},
-  booktitle = {arXiv preprint arXiv:2403.17887},
-  year      = {2024}
+  title     = {The Unreasonable Ineffectiveness of the Deeper Layers},
+  booktitle = {Proc. Int. Conf. Learn. Represent. (ICLR)},
+  year      = {2025},
+  note      = {arXiv:2403.17887},
 }
+
+@inproceedings{kim2024shortened,
+  author    = {Kim, Bo-Kyeong and Kim, Geonmin and Kim, Tae-Ho and Castells, Thibault and Choi, Shinkook and Shin, Junho and Song, Hyoung-Kyu},
+  title     = {Shortened {LLaMA}: A Simple Depth Pruning for Large Language Models},
+  booktitle = {Proc. ICLR Workshop Math. Empir. Understanding Found. Models (ME-FoMo)},
+  year      = {2024},
+  note      = {arXiv:2402.02834},
+}
+
+@inproceedings{song2024sleb,
+  author    = {Song, Jiwon and Oh, Kyungseok and Kim, Taesu and Kim, Hyungjun and Kim, Yulhwa and Kim, Jae-Joon},
+  title     = {{SLEB}: Streamlining {LLM}s through Redundancy Verification and Elimination of Transformer Blocks},
+  booktitle = {Proc. Int. Conf. Mach. Learn. (ICML)},
+  series    = {Proc. Mach. Learn. Res.},
+  volume    = {235},
+  year      = {2024},
+  pages     = {46136--46155},
+  note      = {arXiv:2402.09025},
+}
+
+@inproceedings{chen2024streamline,
+  author    = {Chen, Xiaodong and Hu, Yuxuan and Zhang, Jing and Wang, Yanling and Li, Cuiping and Chen, Hong},
+  title     = {Streamlining Redundant Layers to Compress Large Language Models},
+  booktitle = {Proc. Int. Conf. Learn. Represent. (ICLR)},
+  year      = {2025},
+  note      = {arXiv:2403.19135},
+}
+
+@inproceedings{muralidharan2024minitron,
+  author    = {Muralidharan, Saurav and Sreenivas, Sharath Turuvekere and Joshi, Raviraj and Chochowski, Marcin and Patwary, Mostofa and Shoeybi, Mohammad and Catanzaro, Bryan and Kautz, Jan and Molchanov, Pavlo},
+  title     = {Compact Language Models via Pruning and Knowledge Distillation},
+  booktitle = {Proc. Adv. Neural Inf. Process. Syst. (NeurIPS)},
+  volume    = {37},
+  year      = {2024},
+  note      = {arXiv:2407.14679},
+}
+
+@misc{sreenivas2024minitronpractice,
+  author       = {Sreenivas, Sharath Turuvekere and Muralidharan, Saurav and Joshi, Raviraj and Chochowski, Marcin and Mahabaleshwarkar, Ameya Sunil and Shen, Gerald and Zeng, Jiaqi and Chen, Zijia and Suhara, Yoshi and Diao, Shizhe and Yu, Chenhan and Chen, Wei-Chun and others},
+  title        = {{LLM} Pruning and Distillation in Practice: The {Minitron} Approach},
+  howpublished = {arXiv preprint arXiv:2408.11796},
+  year         = {2024},
+}
+
+@misc{lu2024reassessing,
+  author       = {Lu, Yao and Cheng, Hao and Fang, Yujie and Wang, Zeyu and Wei, Jiaheng and Xu, Dongwei and Xuan, Qi and Yang, Xiaoniu and Zhu, Zhaowei},
+  title        = {Reassessing Layer Pruning in {LLM}s: New Insights and Methods},
+  howpublished = {arXiv preprint arXiv:2411.15558},
+  year         = {2024},
+}
+
+@inproceedings{linearpatch2025,
+  author    = {Chen, Xinrui and Bai, Haoli and Yuan, Tao and Liu, Ruikang and Zhao, Kang and Yu, Xianzhi and Hou, Lu and Guan, Tian and He, Yonghong and Yuan, Chun},
+  title     = {A Simple Linear Patch Revives Layer-Pruned Large Language Models},
+  booktitle = {Proc. Adv. Neural Inf. Process. Syst. (NeurIPS)},
+  volume    = {38},
+  year      = {2025},
+  note      = {arXiv:2505.24680},
+}
+
+@misc{clp2025,
+  author       = {Lu, Yao and Li, Yuqi and Xie, Wenbin and Yu, Shanqing and Xuan, Qi and Zhu, Zhaowei and Wen, Shiping},
+  title        = {The Structural Scalpel: Automated Contiguous Layer Pruning for Large Language Models},
+  howpublished = {arXiv preprint arXiv:2510.23652},
+  year         = {2025},
+}
+
+@misc{ghosted2026,
+  author       = {Yun, Vincent-Daniel and Jo, Junhyuk and Karimireddy, Sai Praneeth and Lee, Sunwoo},
+  title        = {Ghosted Layers: Unconstrained Activation Alignment for Recovering Layer-Pruned {LLM}s},
+  howpublished = {arXiv preprint arXiv:2605.15491},
+  year         = {2026},
+}
+
+@misc{limits2026layer,
+  author       = {Shrestha, Safal and Shrestha, Anubhav and Nepal, Aadim and Kim, Minwu and Ross, Keith},
+  title        = {On the Limits of Layer Pruning for Generative Reasoning in Large Language Models},
+  howpublished = {arXiv preprint arXiv:2602.01997},
+  year         = {2026},
+}
+
+@misc{smarthome2026,
+  author       = {Zhang, Congjing and Patil, Vashishtha and Lange, Henning and Aleem, Usman},
+  title        = {What Breaks Under Pruning in Smart Homes, and When? {Evaluating} {LLM} Degradation Across Architectures and Task Complexity},
+  howpublished = {arXiv preprint arXiv:2609.17515},
+  year         = {2026},
+}
+
+% ======================= Recovery / healing ================================
+
 @inproceedings{he2026paser,
+  author    = {He, Bowei and Yin, Lihao and Zhen, Hui-Ling and Zhang, Xiaokun and Yuan, Mingxuan and Ma, Chen},
   title     = {{PASER}: Post-Training Data Selection for Efficient Pruned Large Language Model Recovery},
-  author    = {He, Bowei and Yu, Lihao and Zhang, Zihao and others},
-  booktitle = {Proc. Int. Conf. Learning Representations (ICLR)},
+  booktitle = {Proc. Int. Conf. Learn. Represent. (ICLR)},
   year      = {2026},
-  note      = {arXiv:2502.12594. TODO verify author list}
+  note      = {arXiv:2502.12594},
 }
+
+@inproceedings{thangarasa2024selfdata,
+  author    = {Thangarasa, Vithursan and Venkatesh, Ganesh and Lasby, Mike and Sinnadurai, Nish and Lie, Sean},
+  title     = {Self-Data Distillation for Recovering Quality in Pruned Large Language Models},
+  booktitle = {Proc. Mach. Learn. Syst. (MLSys)},
+  volume    = {7},
+  year      = {2025},
+  note      = {arXiv:2410.09982},
+}
+
+@misc{shortopd2026,
+  author       = {Zhang, Qingyu and Yuan, Qianhao and Lin, Hongyu and Lu, Yaojie and Han, Xianpei and Sun, Le and Xu, Ming and Li, Jiarui},
+  title        = {{ShortOPD}: Recovering Pruned {LLM}s with Short-to-Long On-Policy Distillation},
+  howpublished = {arXiv preprint arXiv:2607.13124},
+  year         = {2026},
+}
+
+@inproceedings{xia2024sheared,
+  author    = {Xia, Mengzhou and Gao, Tianyu and Zeng, Zhiyuan and Chen, Danqi},
+  title     = {Sheared {LLaMA}: Accelerating Language Model Pre-training via Structured Pruning},
+  booktitle = {Proc. Int. Conf. Learn. Represent. (ICLR)},
+  year      = {2024},
+  note      = {arXiv:2310.06694},
+}
+
+@inproceedings{xie2023doremi,
+  author    = {Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei},
+  title     = {{DoReMi}: Optimizing Data Mixtures Speeds Up Language Model Pretraining},
+  booktitle = {Proc. Adv. Neural Inf. Process. Syst. (NeurIPS)},
+  volume    = {36},
+  year      = {2023},
+  note      = {arXiv:2305.10429},
+}
+
+@inproceedings{ma2023llmpruner,
+  author    = {Ma, Xinyin and Fang, Gongfan and Wang, Xinchao},
+  title     = {{LLM-Pruner}: On the Structural Pruning of Large Language Models},
+  booktitle = {Proc. Adv. Neural Inf. Process. Syst. (NeurIPS)},
+  volume    = {36},
+  year      = {2023},
+  note      = {arXiv:2305.11627},
+}
+
+@inproceedings{rankadaptor2024,
+  author    = {Zhou, Changhai and Han, Shijie and Yang, Lining and Zhou, Yuhua and Cheng, Xu and Wang, Yibin and Li, Hongguang},
+  title     = {{RankAdaptor}: Hierarchical Rank Allocation for Efficient Fine-Tuning Pruned {LLM}s via Performance Model},
+  booktitle = {Findings Assoc. Comput. Linguist.: NAACL 2025},
+  month     = apr,
+  year      = {2025},
+  pages     = {5796--5810},
+  doi       = {10.18653/v1/2025.findings-naacl.321},
+  note      = {arXiv:2406.15734},
+}
+
+@inproceedings{restorelcc2025,
+  author    = {Feng, Zijian and Zhou, Hanzhang and Zhu, Zixiao and Li, Tianjiao and Chua, Jia Jim Deryl and Mak, Lee Onn and Ng, Gee Wah and Mao, Kezhi},
+  title     = {Restoring Pruned Large Language Models via Lost Component Compensation},
+  booktitle = {Proc. Adv. Neural Inf. Process. Syst. (NeurIPS)},
+  volume    = {38},
+  year      = {2025},
+  note      = {arXiv:2510.21834},
+}
+
 @inproceedings{hu2022lora,
-  title     = {{LoRA}: Low-Rank Adaptation of Large Language Models},
   author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
-  booktitle = {Proc. Int. Conf. Learning Representations (ICLR)},
-  year      = {2022}
+  title     = {{LoRA}: Low-Rank Adaptation of Large Language Models},
+  booktitle = {Proc. Int. Conf. Learn. Represent. (ICLR)},
+  year      = {2022},
+  note      = {arXiv:2106.09685},
+}
+
+@inproceedings{dettmers2023qlora,
+  author    = {Dettmers, Tim and Pagnoni, Artidoro and Holtzman, Ari and Zettlemoyer, Luke},
+  title     = {{QLoRA}: Efficient Finetuning of Quantized {LLM}s},
+  booktitle = {Proc. Adv. Neural Inf. Process. Syst. (NeurIPS)},
+  volume    = {36},
+  year      = {2023},
+  note      = {arXiv:2305.14314},
+}
+
+@misc{llama32pruning2025,
+  author       = {Martra, Pere},
+  title        = {Fragile Knowledge, Robust Instruction-Following: The Width Pruning Dichotomy in {Llama-3.2}},
+  howpublished = {arXiv preprint arXiv:2512.22671},
+  year         = {2025},
+}
+
+@misc{freelunch2025,
+  author       = {Wagner, Moritz and Roux, Christophe and Zimmer, Max and Pokutta, Sebastian},
+  title        = {A Free Lunch in {LLM} Compression: Revisiting Retraining after Pruning},
+  howpublished = {arXiv preprint arXiv:2510.14444},
+  year         = {2025},
+}
+
+@misc{taskpruning2026,
+  author       = {Siam, M. K. Khalidi and Tausif-Ul-Islam, Md. and Khan, Md. Reshad Romim and Hossain, Mohammed Ali and Amin, Mushfiqul and Khan, Labib Hasan and Farhan, Niloy and Sadeque, Farig},
+  title        = {Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models},
+  howpublished = {arXiv preprint arXiv:2604.27115},
+  year         = {2026},
+}
+
+% ======================= Benchmarks / evaluation ===========================
+
+@misc{geng2025jsonschemabench,
+  author       = {Geng, Saibo and Cooper, Hudson and Moskal, Micha{\l} and Jenkins, Samuel and Berman, Julian and Ranchin, Nathan and West, Robert and Horvitz, Eric and Nori, Harsha},
+  title        = {{JSONSchemaBench}: A Rigorous Benchmark of Structured Outputs for Language Models},
+  howpublished = {arXiv preprint arXiv:2501.10868},
+  year         = {2025},
+}
+
+@inproceedings{patil2025bfcl,
+  author    = {Patil, Shishir G. and Mao, Huanzhi and Yan, Fanjia and Ji, Charlie Cheng-Jie and Suresh, Vishnu and Stoica, Ion and Gonzalez, Joseph E.},
+  title     = {The {Berkeley} Function Calling Leaderboard ({BFCL}): From Tool Use to Agentic Evaluation of Large Language Models},
+  booktitle = {Proc. Int. Conf. Mach. Learn. (ICML)},
+  series    = {Proc. Mach. Learn. Res.},
+  volume    = {267},
+  year      = {2025},
+  pages     = {48371--48392},
+}
+
+@misc{zhou2023ifeval,
+  author       = {Zhou, Jeffrey and Lu, Tianjian and Mishra, Swaroop and Brahma, Siddhartha and Basu, Sujoy and Luan, Yi and Zhou, Denny and Hou, Le},
+  title        = {Instruction-Following Evaluation for Large Language Models},
+  howpublished = {arXiv preprint arXiv:2311.07911},
+  year         = {2023},
+}
+
+@misc{cobbe2021gsm8k,
+  author       = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},
+  title        = {Training Verifiers to Solve Math Word Problems},
+  howpublished = {arXiv preprint arXiv:2110.14168},
+  year         = {2021},
+}
+
+@inproceedings{rottger2024xstest,
+  author    = {R{\"o}ttger, Paul and Kirk, Hannah and Vidgen, Bertie and Attanasio, Giuseppe and Bianchi, Federico and Hovy, Dirk},
+  title     = {{XSTest}: A Test Suite for Identifying Exaggerated Safety Behaviours in Large Language Models},
+  booktitle = {Proc. Conf. North Amer. Chapter Assoc. Comput. Linguist.: Hum. Lang. Technol. (NAACL-HLT), Vol. 1 (Long Papers)},
+  year      = {2024},
+  pages     = {5377--5400},
+  doi       = {10.18653/v1/2024.naacl-long.301},
+  note      = {arXiv:2308.01263},
+}
+
+@inproceedings{hendrycks2021mmlu,
+  author    = {Hendrycks, Dan and Burns, Collin and Basart, Steven and Zou, Andy and Mazeika, Mantas and Song, Dawn and Steinhardt, Jacob},
+  title     = {Measuring Massive Multitask Language Understanding},
+  booktitle = {Proc. Int. Conf. Learn. Represent. (ICLR)},
+  year      = {2021},
+  note      = {arXiv:2009.03300},
+}
+
+@inproceedings{guo2017calibration,
+  author    = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},
+  title     = {On Calibration of Modern Neural Networks},
+  booktitle = {Proc. Int. Conf. Mach. Learn. (ICML)},
+  series    = {Proc. Mach. Learn. Res.},
+  volume    = {70},
+  year      = {2017},
+  pages     = {1321--1330},
+  note      = {arXiv:1706.04599},
+}
+
+@misc{gao2024lmeval,
+  author       = {Gao, Leo and Tow, Jonathan and Abbasi, Baber and Biderman, Stella and Black, Sid and DiPofi, Anthony and Foster, Charles and Golding, Laurence and Hsu, Jeffrey and Le Noac'h, Alain and Li, Haonan and McDonell, Kyle and others},
+  title        = {A Framework for Few-Shot Language Model Evaluation},
+  howpublished = {[Online]. Available: https://zenodo.org/records/10256836},
+  year         = {2023},
+  doi          = {10.5281/zenodo.10256836},
+  note         = {Zenodo, v0.4.0, Dec. 2023. Accessed: Oct. 7, 2026},
+}
+
+% ======================= Models ============================================
+
+@misc{grattafiori2024llama3,
+  author       = {Grattafiori, Aaron and Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and Al-Dahle, Ahmad and Letman, Aiesha and Mathur, Akhil and Schelten, Alan and Vaughan, Alex and Yang, Amy and Fan, Angela and others},
+  title        = {The {Llama} 3 Herd of Models},
+  howpublished = {arXiv preprint arXiv:2407.21783},
+  year         = {2024},
+}
+
+@misc{qwen2025qwen25,
+  author       = {{Qwen} and Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and Yu, Bowen and Li, Chengyuan and Liu, Dayiheng and Huang, Fei and Wei, Haoran and Lin, Huan and others},
+  title        = {{Qwen2.5} Technical Report},
+  howpublished = {arXiv preprint arXiv:2412.15115},
+  year         = {2024},
+}
+
+@misc{allal2025smollm2,
+  author       = {Ben Allal, Loubna and Lozhkov, Anton and Bakouch, Elie and Mart{\'\i}n Bl{\'a}zquez, Gabriel and Penedo, Guilherme and Tunstall, Lewis and Marafioti, Andr{\'e}s and Kydl{\'\i}{\v{c}}ek, Hynek and Piqueres Lajar{\'\i}n, Agust{\'\i}n and Srivastav, Vaibhav and Lochner, Joshua and Fahlgren, Caleb and others},
+  title        = {{SmolLM2}: When Smol Goes Big -- Data-Centric Training of a Small Language Model},
+  howpublished = {arXiv preprint arXiv:2502.02737},
+  year         = {2025},
+}
+
+@misc{olmo2025olmo2,
+  author       = {{Team OLMo} and Walsh, Pete and Soldaini, Luca and Groeneveld, Dirk and Lo, Kyle and Arora, Shane and Bhagia, Akshita and Gu, Yuling and Huang, Shengyi and Jordan, Matt and Lambert, Nathan and Schwenk, Dustin and others},
+  title        = {2 {OLMo} 2 Furious},
+  howpublished = {arXiv preprint arXiv:2501.00656},
+  year         = {2025},
+  note         = {Shorter version accepted at COLM 2025},
+}
+
+% ======================= Datasets / software ===============================
+
+@misc{glaive2023functioncalling,
+  author       = {{Glaive AI}},
+  title        = {{glaive-function-calling-v2} (Hugging Face dataset)},
+  howpublished = {[Online]. Available: https://huggingface.co/datasets/glaiveai/glaive-function-calling-v2},
+  year         = {2023},
+  note         = {Accessed: Oct. 7, 2026},
+}
+
+@misc{yahma2023alpacacleaned,
+  author       = {{yahma}},
+  title        = {{Alpaca-Cleaned}: A Cleaned Version of the {Stanford Alpaca} Dataset (Hugging Face dataset)},
+  howpublished = {[Online]. Available: https://huggingface.co/datasets/yahma/alpaca-cleaned},
+  year         = {2023},
+  note         = {Accessed: Oct. 7, 2026},
+}
+
+@misc{taori2023alpaca,
+  author       = {Taori, Rohan and Gulrajani, Ishaan and Zhang, Tianyi and Dubois, Yann and Li, Xuechen and Guestrin, Carlos and Liang, Percy and Hashimoto, Tatsunori B.},
+  title        = {{Stanford Alpaca}: An Instruction-Following {LLaMA} Model},
+  howpublished = {[Online]. Available: \url{https://github.com/tatsu-lab/stanford_alpaca}},
+  year         = {2023},
+  note         = {Accessed: Oct. 7, 2026},
+}
+
+@inproceedings{yu2024metamath,
+  author    = {Yu, Longhui and Jiang, Weisen and Shi, Han and Yu, Jincheng and Liu, Zhengying and Zhang, Yu and Kwok, James T. and Li, Zhenguo and Weller, Adrian and Liu, Weiyang},
+  title     = {{MetaMath}: Bootstrap Your Own Mathematical Questions for Large Language Models},
+  booktitle = {Proc. Int. Conf. Learn. Represent. (ICLR)},
+  year      = {2024},
+  note      = {arXiv:2309.12284},
+}
+
+@inproceedings{ji2024pkusaferlhf,
+  author    = {Ji, Jiaming and Hong, Donghai and Zhang, Borong and Chen, Boyuan and Dai, Josef and Zheng, Boren and Qiu, Tianyi Alex and Zhou, Jiayi and Wang, Kaile and Li, Boxun and Han, Sirui and Guo, Yike and Yang, Yaodong},
+  title     = {{PKU-SafeRLHF}: Towards Multi-Level Safety Alignment for {LLM}s with Human Preference},
+  booktitle = {Proc. 63rd Annu. Meeting Assoc. Comput. Linguist. (ACL), Vol. 1 (Long Papers)},
+  month     = jul,
+  year      = {2025},
+  pages     = {31983--32016},
+  doi       = {10.18653/v1/2025.acl-long.1544},
+  note      = {arXiv:2406.15513},
+}
+
+@misc{argilla2024ifevallike,
+  author       = {{Argilla}},
+  title        = {{IFEval}-Like Data (Hugging Face dataset)},
+  howpublished = {[Online]. Available: https://huggingface.co/datasets/argilla/ifeval-like-data},
+  year         = {2024},
+  note         = {Accessed: Oct. 7, 2026},
+}
+
+@misc{mangrulkar2022peft,
+  author       = {Mangrulkar, Sourab and Gugger, Sylvain and Debut, Lysandre and Belkada, Younes and Paul, Sayak and Bossan, Benjamin and Tietz, Marian},
+  title        = {{PEFT}: State-of-the-Art Parameter-Efficient Fine-Tuning Methods},
+  howpublished = {[Online]. Available: https://github.com/huggingface/peft},
+  year         = {2022},
+  note         = {Accessed: Oct. 7, 2026},
+}
+
+@inproceedings{wolf2020transformers,
+  author    = {Wolf, Thomas and Debut, Lysandre and Sanh, Victor and Chaumond, Julien and Delangue, Clement and Moi, Anthony and Cistac, Pierric and Rault, Tim and Louf, Remi and Funtowicz, Morgan and Davison, Joe and Shleifer, Sam and others},
+  title     = {Transformers: State-of-the-Art Natural Language Processing},
+  booktitle = {Proc. Conf. Empir. Methods Nat. Lang. Process.: Syst. Demonstrations (EMNLP)},
+  year      = {2020},
+  pages     = {38--45},
+  doi       = {10.18653/v1/2020.emnlp-demos.6},
+}
+
+% ======================= IEEE Access ======================================
+
+@article{alahmari2024repeatability,
+  author  = {Alahmari, Saeed S. and Hall, Lawrence O. and Mouton, Peter R. and Goldgof, Dmitry B.},
+  title   = {Repeatability of Fine-Tuning Large Language Models Illustrated Using {QLoRA}},
+  journal = {IEEE Access},
+  volume  = {12},
+  pages   = {153221--153231},
+  year    = {2024},
+  doi     = {10.1109/ACCESS.2024.3470850},
+}
+
+@article{mugnaini2025consensus,
+  author  = {Mugnaini, Leandro Giusti and Duarte, Carolina Tavares and Costa, Anna Helena Reali and Jordao, Artur},
+  title   = {Layer Pruning With Consensus: A Triple-Win Solution},
+  journal = {IEEE Access},
+  volume  = {13},
+  pages   = {148192--148202},
+  year    = {2025},
+  doi     = {10.1109/ACCESS.2025.3601042},
+}
+
+@article{kharinaev2026quantsafety,
+  author  = {Kharinaev, Artem and Moskvoretskii, Viktor and Shvetsov, Egor and Studenikina, Kseniia and Bykov, Mikhail and Burnaev, Evgeny},
+  title   = {Investigating the Impact of Quantization Methods on the Safety and Reliability of Large Language Models},
+  journal = {IEEE Access},
+  volume  = {14},
+  pages   = {96771--96793},
+  year    = {2026},
+  doi     = {10.1109/ACCESS.2026.3703899},
+}
+
+% ======================= Compression, safety, classics =====================
+
+@inproceedings{jaiswal2024truth,
+  author    = {Jaiswal, Ajay and Gan, Zhe and Du, Xianzhi and Zhang, Bowen and Wang, Zhangyang and Yang, Yinfei},
+  title     = {Compressing {LLM}s: The Truth is Rarely Pure and Never Simple},
+  booktitle = {Proc. Int. Conf. Learn. Represent. (ICLR)},
+  year      = {2024},
+  note      = {arXiv:2310.01382},
+}
+
+@inproceedings{vaswani2017attention,
+  author    = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and Kaiser, {\L}ukasz and Polosukhin, Illia},
+  title     = {Attention Is All You Need},
+  booktitle = {Proc. Adv. Neural Inf. Process. Syst. (NeurIPS)},
+  volume    = {30},
+  year      = {2017},
+  note      = {arXiv:1706.03762},
+}
+
+@misc{chhabra2025refusal,
+  author       = {Chhabra, Vishnu Kabir and Khalili, Mohammad Mahdi},
+  title        = {Towards Understanding and Improving Refusal in Compressed Models via Mechanistic Interpretability},
+  howpublished = {arXiv preprint arXiv:2504.04215},
+  year         = {2025},
+}
+
+% Peer-reviewed alternative for the compression/safety citation (see report).
+@inproceedings{xu2024beyondperplexity,
+  author    = {Xu, Zhichao and Gupta, Ashim and Li, Tao and Bentham, Oliver and Srikumar, Vivek},
+  title     = {Beyond Perplexity: Multi-dimensional Safety Evaluation of {LLM} Compression},
+  booktitle = {Findings Assoc. Comput. Linguist.: EMNLP 2024},
+  month     = nov,
+  year      = {2024},
+  pages     = {15359--15396},
+  doi       = {10.18653/v1/2024.findings-emnlp.901},
+  note      = {arXiv:2407.04965},
+}
+
+@inproceedings{frantar2023sparsegpt,
+  author    = {Frantar, Elias and Alistarh, Dan},
+  title     = {{SparseGPT}: Massive Language Models Can Be Accurately Pruned in One-Shot},
+  booktitle = {Proc. Int. Conf. Mach. Learn. (ICML)},
+  series    = {Proc. Mach. Learn. Res.},
+  volume    = {202},
+  year      = {2023},
+  pages     = {10323--10337},
+  note      = {arXiv:2301.00774},
+}
+
+@inproceedings{sun2024wanda,
+  author    = {Sun, Mingjie and Liu, Zhuang and Bair, Anna and Kolter, J. Zico},
+  title     = {A Simple and Effective Pruning Approach for Large Language Models},
+  booktitle = {Proc. Int. Conf. Learn. Represent. (ICLR)},
+  year      = {2024},
+  note      = {arXiv:2306.11695},
 }
