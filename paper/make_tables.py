@@ -174,7 +174,7 @@ for m in MODELS:
         rows.append([NAME[m] if i == 0 else "", METHOD[meth]] + [f2(r[c]) for c in CAPS]
                     + [cm, f2(r["mean_ret"]), w, f2(r["safe_over_refusal"]), f2(r["know_ece"])])
     if meth == "rah_sum" and m == "qwen":
-        rows.append(["", "RAH-capped", "\\multicolumn{11}{l}{identical allocation to RAH on this family (no capability predicted above 1.0)}"])
+        rows.append(["", "RAH-capped", "\\multicolumn{11}{l}{identical allocation to RAH on this family (see Fig.~6)}"])
     mid.append(len(rows) - 1)
 write("tab_main", rows, header=["Family & Method & " + " & ".join(CAPNAME[c] for c in CAPS)
                                 + " & Capped mean & Mean & Worst & Over-refusal & ECE"],
