@@ -1,0 +1,6 @@
+{
+  "llama": {"checkpoint": "unsloth/Llama-3.2-1B-Instruct", "params": "1.24B", "d_model": 2048, "device": "RTX 4060 Laptop (8 GB); L4 for two seeds"},
+  "qwen": {"checkpoint": "Qwen/Qwen2.5-1.5B-Instruct", "params": "1.54B", "d_model": 1536, "device": "RTX 4060 Laptop (8 GB)"},
+  "smollm": {"checkpoint": "HuggingFaceTB/SmolLM2-1.7B-Instruct", "params": "1.71B", "d_model": 2048, "device": "A100 (40 GB)"},
+  "olmo": {"checkpoint": "allenai/OLMo-2-0425-1B-Instruct", "params": "1.48B", "d_model": 2048, "device": "A100 (40 GB)"}
+}

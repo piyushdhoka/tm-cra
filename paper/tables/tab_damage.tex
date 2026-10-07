@@ -1,0 +1,27 @@
+\begin{tabular}{llrrrrrr}
+\toprule
+Family & Quantity & Struct. & Tool & Instr. & Math & Safety & Knowl. \\
+\midrule
+Llama-3.2-1B & unpruned score & 0.32 & 0.54 & 0.45 & 0.47 & 0.62 & 0.32 \\
+ & retention, light cut & 0.75 & 0.89 & 0.90 & 0.35 & 1.27 & 0.75 \\
+ & retention, main cut & 0.06 & 0.00 & 0.43 & 0.07 & 1.02 & 0.76 \\
+ & breakage rank (1 = worst) & 2 & 1 & 4 & 3 & 6 & 5 \\
+\midrule
+Qwen2.5-1.5B & unpruned score & 0.78 & 0.86 & 0.38 & 0.48 & 0.73 & 0.58 \\
+ & retention, light cut & 0.11 & 0.00 & 0.28 & 0.01 & 0.88 & 0.65 \\
+ & retention, main cut & 0.04 & 0.00 & 0.20 & 0.00 & 0.80 & 0.57 \\
+ & breakage rank (1 = worst) & 3 & 1 & 4 & 1 & 6 & 5 \\
+\midrule
+SmolLM2-1.7B & unpruned score & 0.71 & 0.69 & 0.45 & 0.39 & 0.74 & 0.43 \\
+ & retention, light cut & 0.52 & 0.38 & 0.60 & 0.12 & 0.96 & 0.86 \\
+ & retention, main cut & 0.21 & 0.05 & 0.33 & 0.06 & 0.77 & 0.87 \\
+ & breakage rank (1 = worst) & 3 & 1 & 4 & 2 & 5 & 6 \\
+\midrule
+OLMo-2-1B & unpruned score & 0.60 & 0.54 & 0.60 & 0.62 & 0.85 & 0.36 \\
+ & retention, light cut & 0.76 & 0.87 & 0.86 & 0.06 & 0.91 & 0.99 \\
+ & retention, main cut & 0.49 & 0.04 & 0.66 & 0.02 & 0.85 & 0.72 \\
+ & breakage rank (1 = worst) & 3 & 2 & 4 & 1 & 6 & 5 \\
+\midrule
+All & mean rank ($W$ = 0.92) & 2.75 & 1.38 & 4.00 & 1.88 & 5.75 & 5.25 \\
+\bottomrule
+\end{tabular}

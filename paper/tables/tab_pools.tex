@@ -1,0 +1,12 @@
+\begin{tabular}{lllrrrr}
+\toprule
+Pool & Prompt source & Teacher QC & Llama-3.2-1B & Qwen2.5-1.5B & SmolLM2-1.7B & OLMo-2-1B \\
+\midrule
+fmt & JSON instances for glaive function schemas & schema-valid & 986 (78\%) & 1000 (100\%) & 1000 (98\%) & 1000 (100\%) \\
+tool & glaive-function-calling-v2 & known function + JSON args & 1000 (98\%) & 1000 (100\%) & 1000 (99\%) & 895 (69\%) \\
+inst & Alpaca-cleaned + verifiable constraint & IFEval checker passes & 831 (64\%) & 970 (75\%) & 1000 (80\%) & 1000 (78\%) \\
+math & GSM8K train & final answer correct & 861 (66\%) & 912 (70\%) & 685 (53\%) & 1000 (82\%) \\
+safe & PKU-SafeRLHF harmful + Alpaca benign & none & 1000 (100\%) & 1000 (100\%) & 1000 (100\%) & 1000 (100\%) \\
+general & Alpaca-cleaned & none & 1000 (100\%) & 1000 (100\%) & 1000 (100\%) & 1000 (100\%) \\
+\bottomrule
+\end{tabular}
