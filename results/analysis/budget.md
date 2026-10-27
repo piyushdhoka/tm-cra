@@ -1,8 +1,8 @@
 | model   | method   |   budget |   seed |   mean_ret |
 |:--------|:---------|---------:|-------:|-----------:|
-| llama   | uniform  |  4480000 |      0 |     0.9295 |
-| llama   | uniform  |  4480000 |      1 |     0.91   |
-| llama   | uniform  |  4480000 |      2 |     1.0199 |
+| llama   | uniform  |  4480000 |      0 |     0.9211 |
+| llama   | uniform  |  4480000 |      1 |     0.902  |
+| llama   | uniform  |  4480000 |      2 |     1.0155 |
 | qwen    | rah_sum  |   250000 |      0 |     0.5242 |
 | qwen    | rah_sum  |  4000000 |      0 |     0.6605 |
 | qwen    | uniform  |   250000 |      0 |     0.5462 |

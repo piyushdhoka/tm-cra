@@ -1,17 +1,17 @@
 | model   | ours       | vs          | metric        |   diff |   ci_low |   ci_high |     p |
 |:--------|:-----------|:------------|:--------------|-------:|---------:|----------:|------:|
-| llama   | rah_sum    | uniform     | capped_mean   |  0.031 |    0.006 |     0.053 | 0.014 |
+| llama   | rah_sum    | uniform     | capped_mean   |  0.021 |   -0.006 |     0.045 | 0.117 |
 | llama   | rah_sum    | uniform     | worst         |  0.168 |    0.07  |     0.267 | 0     |
-| llama   | rah_sum    | uniform     | uncapped_mean |  0.022 |   -0.023 |     0.065 | 0.31  |
-| llama   | rah_sum    | damage_prop | capped_mean   |  0.021 |   -0.003 |     0.045 | 0.075 |
+| llama   | rah_sum    | uniform     | uncapped_mean |  0.007 |   -0.037 |     0.047 | 0.763 |
+| llama   | rah_sum    | damage_prop | capped_mean   |  0.013 |   -0.011 |     0.039 | 0.271 |
 | llama   | rah_sum    | damage_prop | worst         |  0.116 |    0.021 |     0.207 | 0.02  |
-| llama   | rah_sum    | damage_prop | uncapped_mean | -0.077 |   -0.122 |    -0.033 | 0.002 |
-| llama   | rah_capped | uniform     | capped_mean   |  0.021 |   -0.006 |     0.044 | 0.123 |
+| llama   | rah_sum    | damage_prop | uncapped_mean | -0.074 |   -0.118 |    -0.03  | 0.002 |
+| llama   | rah_capped | uniform     | capped_mean   |  0.012 |   -0.014 |     0.037 | 0.41  |
 | llama   | rah_capped | uniform     | worst         |  0.172 |    0.081 |     0.27  | 0     |
-| llama   | rah_capped | uniform     | uncapped_mean | -0.044 |   -0.088 |     0.001 | 0.055 |
-| llama   | rah_capped | damage_prop | capped_mean   |  0.011 |   -0.016 |     0.034 | 0.436 |
+| llama   | rah_capped | uniform     | uncapped_mean | -0.06  |   -0.104 |    -0.017 | 0.006 |
+| llama   | rah_capped | damage_prop | capped_mean   |  0.004 |   -0.023 |     0.029 | 0.824 |
 | llama   | rah_capped | damage_prop | worst         |  0.119 |    0.028 |     0.211 | 0.012 |
-| llama   | rah_capped | damage_prop | uncapped_mean | -0.143 |   -0.193 |    -0.096 | 0     |
+| llama   | rah_capped | damage_prop | uncapped_mean | -0.14  |   -0.19  |    -0.094 | 0     |
 | qwen    | rah_sum    | uniform     | capped_mean   |  0.02  |   -0.007 |     0.045 | 0.145 |
 | qwen    | rah_sum    | uniform     | worst         | -0.027 |   -0.086 |     0.031 | 0.369 |
 | qwen    | rah_sum    | uniform     | uncapped_mean |  0.02  |   -0.009 |     0.048 | 0.165 |
