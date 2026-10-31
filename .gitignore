@@ -13,3 +13,8 @@ venv/
 # local-only folders, never pushed
 ieee_access/
 paper/
+arxiv/
+method-x/
+
+# local working notes (planning documents), never pushed
+notes/

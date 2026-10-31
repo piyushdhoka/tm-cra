@@ -1,134 +1,96 @@
-# RAH: Setup and Run Instructions
+# TM-CRA: Token-Matched Capability Recovery Assessment for Depth-Pruned Small Language Models
 
-Two models run on two laptops at the same time.
+Code, per-item results, and analysis for the paper
+**"A Token-Matched Protocol for Measuring Capability-Specific Damage and Recovery in Depth-Pruned Small Language Models"**
+by Piyush Dhoka, Vedant Pandhare, Varun Inamdar, and Aadarsh Pathre (Vishwakarma University, Pune).
 
-| Model | Hugging Face repo used | Laptop | Config name |
-|---|---|---|---|
-| **Qwen2.5-1.5B-Instruct** | `Qwen/Qwen2.5-1.5B-Instruct` | **Other laptop (RTX 4070)** | `qwen` |
-| **Llama-3.2-1B-Instruct** | `unsloth/Llama-3.2-1B-Instruct` (public mirror of the official weights) | **This laptop (RTX 4060)** | `llama` |
-| **SmolLM2-1.7B-Instruct** | `HuggingFaceTB/SmolLM2-1.7B-Instruct` (ungated, 24 blocks) | **This laptop (RTX 4060)**, after Llama | `smollm` |
-| **OLMo-2-1B-Instruct** | `allenai/OLMo-2-0425-1B-Instruct` (ungated, 16 blocks) | **This laptop (RTX 4060)**, after SmolLM2 | `olmo` |
+> arXiv link: *to be added after posting.*
 
-Never run `qwen` on this laptop or `llama` on the other laptop.
+Depth pruning removes whole Transformer blocks from a language model to make it smaller and faster, but it damages
+capabilities unevenly. A short fine-tuning run, called **healing**, decides what comes back, and its token budget has to
+be split across data that target different capabilities. Methods that plan this split are usually compared at a fixed
+healing budget, which never charges them for the training tokens they spend on planning.
 
-`smollm` and `olmo` are the third and fourth model families. Their pruning levels in `configs/smollm.yaml` and `configs/olmo.yaml` are uncalibrated starting guesses: run stage 4 (`python scripts/04_diagnose.py --model smollm`, or `--model olmo`) first, check that capabilities are damaged but not all at chance, and lower `prune_main` if they are.
+**TM-CRA** is an eight-step evaluation protocol that fixes this. It diagnoses six deployment-relevant capabilities
+(structured output, function calling, instruction following, math, safety refusal, and knowledge), heals every
+allocation rule with identical data, recipe, and seeds, and adds a **token-matched control**: a uniform heal that receives
+the planner's pilot tokens as extra training. It then compares methods with seed-aware paired bootstrap tests and Holm
+correction, with the primary metrics fixed in a public commit (`73e8582`) before any test result existed.
 
-**No Hugging Face account, token or `huggingface-cli login` is needed on either laptop.** Both models and every dataset are public and download automatically on the first run.
+We validated TM-CRA on four instruction-tuned models: Llama-3.2-1B, Qwen2.5-1.5B, SmolLM2-1.7B, and OLMo-2-1B. The
+planner under test is **RAH** (recoverability-aware healing), which plans the data mixture and adaptation scope from 21
+short pilot heals.
 
----
+## Key findings
 
-## 1. Setup (do this on BOTH laptops)
+- **What breaks.** Function calling and math collapse in every model. Once chance floors are corrected for, which of the
+  other capabilities look robust depends on the model.
+- **What is trained matters as much as the data.** Fully tuning only the last three blocks instead of adding low-rank
+  adapters to all blocks ties on one model and loses 0.05–0.18 of capped mean retention on the other three. One
+  300k-token scope pilot catches this.
+- **At a fixed 1M-token budget**, planning never significantly hurts mean retention and lifts the weakest capability
+  (math) by 0.17 on Llama and 0.14 on OLMo.
+- **At equal training tokens**, simply healing longer with uniform data is never significantly worse than planning, and
+  beats it on the weakest capability on Qwen and SmolLM2 (by 0.11 and 0.24). Short pilots cannot see how slowly math
+  recovers, so pilot-based planning only makes sense when the healing budget itself is fixed.
 
-Requirements: Windows 10/11, an NVIDIA driver supporting CUDA 12.1+, Python 3.12, Git, and about 15 GB of free disk space.
+| Model | Uniform | Damage-proportional | RAH | RAH-capped | Uniform, 4.48M tokens |
+|---|---|---|---|---|---|
+| Llama-3.2-1B | 0.82 / 0.38 | 0.83 / 0.43 | 0.84 / 0.54 | 0.83 / 0.55 | 0.86 / 0.58 |
+| Qwen2.5-1.5B | 0.62 / 0.21 | 0.61 / 0.19 | 0.64 / 0.19 | – | 0.65 / 0.29 |
+| SmolLM2-1.7B | 0.77 / 0.15 | 0.76 / 0.14 | 0.77 / 0.10 | 0.78 / 0.10 | 0.79 / 0.34 |
+| OLMo-2-1B | 0.74 / 0.21 | 0.77 / 0.31 | 0.75 / 0.29 | 0.76 / 0.35 | 0.78 / 0.37 |
 
-Open **PowerShell** in a folder **outside OneDrive** (for example `C:\work`). Virtual environments and model caches should not sync to OneDrive.
+*Capped mean retention / worst-capability retention, relative to the unpruned model, on the test split, averaged over
+three seeds. The first four columns heal with 1M tokens; RAH also spends 3.48M tokens on pilots, and the last column
+gives uniform healing that same 4.48M-token total. On Qwen, RAH-capped gives the same allocation as RAH.*
 
-```powershell
-# 1. Get the code
-git clone https://github.com/piyushdhoka/Recoverability-Aware-Healing-of-Depth-Pruned-Small-LLMs.git rah-healing
-cd rah-healing
+## Repository layout
 
-# 2. Create and activate a virtual environment
-python -m venv venv
-.\venv\Scripts\Activate.ps1
+| Path | Contents |
+|---|---|
+| `rah/` | The library: Block-Influence pruning (`influence.py`), healing (`healing.py`), recovery curves (`recovery.py`), allocation rules (`allocate.py`), the evaluation suite (`evaluation/`), the linear patch (`linear_patch.py`), and statistics (`stats.py`) |
+| `scripts/` | The pipeline, one numbered script per stage (`00_check_env.py` to `10_compute_matched.py`) |
+| `configs/` | One settings file per model (checkpoint, cut, budgets) |
+| `data/` | Evaluation items and healing prompts |
+| `results/` | Every run with per-item scores; summary tables and figures in `results/analysis/` |
+| `tests/` | Unit tests (`pytest`) |
 
-# 3. Install PyTorch (CUDA 12.1), then the pinned requirements
-pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cu121
+## Reproducing the results
+
+Install PyTorch for your CUDA version first (the runs used PyTorch 2.11.0), then:
+
+```bash
 pip install -r requirements.txt
-
-# 4. Check that the GPU is visible (must print True)
-python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
-
-# 5. Check that every dataset is reachable (must end with "10/10 dataset checks passed")
-python scripts/check_datasets.py
 ```
 
-If `Activate.ps1` is blocked, run this once and try again:
-`Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
+Each stage script takes the model name (`llama`, `qwen`, `smollm`, or `olmo`), reads its settings from `configs/`, and
+skips runs that have already finished, so an interrupted stage can be relaunched.
 
-If downloads print a warning about **symlinks** on Windows, it is harmless. To hide it:
-`$env:HF_HUB_DISABLE_SYMLINKS_WARNING = "1"`
+| Protocol step | Command | What it does |
+|---|---|---|
+| Steps 2–5 | `bash scripts/run_all.sh llama` (Windows: `.\scripts\run_all.ps1 -Model llama`) | Environment check, evaluation items, pool prompts, teacher targets, pruning and diagnosis, pilots, allocation, and the fixed-budget heals |
+| Step 6 | `python scripts/07_main.py --model llama --only uniform --budgets 4480000 --sweep-seeds 1 2` | Adds seeds of the token-matched uniform heal (seed 0 is run by stage 07) |
+| Step 7 | `python scripts/09_headline_tests.py` and `python scripts/10_compute_matched.py` | Paired bootstrap tests at the fixed budget and against the token-matched heal |
+| Step 8 | `python scripts/08_analyze.py --models qwen llama smollm olmo` | Writes all summary tables (CSV and Markdown) and figures to `results/analysis/` |
 
----
+To apply TM-CRA to another model, add a settings file for it to `configs/` with its checkpoint and cut, and run the
+same commands with its name.
 
-## 2. Qwen — run on the OTHER laptop (RTX 4070)
+**Hardware.** All runs used NVIDIA A100 40 GB GPUs.
+environment of each model's runs is recorded in `results/<model>/env.json`.
 
-```powershell
-cd rah-healing
-.\venv\Scripts\Activate.ps1
-git pull
+## Citation
 
-.\scripts\run_all.ps1 -Model qwen
+```bibtex
+@misc{dhoka2026tmcra,
+  title  = {A Token-Matched Protocol for Measuring Capability-Specific Damage and Recovery in Depth-Pruned Small Language Models},
+  author = {Dhoka, Piyush and Pandhare, Vedant and Inamdar, Varun and Pathre, Aadarsh},
+  year   = {2026},
+  howpublished = {\url{https://github.com/piyushdhoka/tm-cra}}
+}
 ```
 
-- It runs all stages in order (00 → 07) and takes roughly 6–8 hours in total. Leaving it overnight is fine.
-- **If it stops** (crash, sleep, power cut), run the same command again. Finished runs are skipped automatically.
-- To restart from a specific stage, for example stage 5:
-  ```powershell
-  .\scripts\run_all.ps1 -Model qwen -From 5
-  ```
-- Keep the laptop **plugged in** and **disable sleep** while it runs.
+## License
 
-**When it finishes, send the results back:**
-
-```powershell
-git add results/qwen
-git commit -m "Qwen results"
-git push
-```
-
----
-
-## 3. Llama — run on THIS laptop (RTX 4060)
-
-No login step: the model downloads automatically from the public mirror.
-
-```powershell
-cd rah-healing
-.\venv\Scripts\Activate.ps1
-git pull
-
-.\scripts\run_all.ps1 -Model llama
-```
-
-- To resume after a stop, run the same command again. To restart from a stage, add `-From <n>`:
-  ```powershell
-  .\scripts\run_all.ps1 -Model llama -From 5
-  ```
-
-**When it finishes:**
-
-```powershell
-git add results/llama
-git commit -m "Llama results"
-git push
-```
-
----
-
-## 4. After BOTH models finish (on either laptop)
-
-```powershell
-git pull
-
-# The zero-cost proxy method needs the other model's results, so re-run stages 6–7 once per model
-python scripts/06_fit_allocate.py --model llama
-python scripts/07_main.py --model llama --only rah_proxy
-#   (on the RTX 4070 laptop: the same two commands with --model qwen)
-
-# Build tables and figures for the paper
-python scripts/08_analyze.py
-```
-
-Output: `results/analysis/` (CSV/Markdown tables and PDF figures).
-
----
-
-## 5. Important rules
-
-- **The data is shared.** Stages 1 and 2 build the evaluation and healing data. Run them on one laptop, commit `data/`, and `git pull` on the other before starting. Both models must use identical items.
-  - On this laptop: `python scripts/01_build_eval.py --model llama` and `python scripts/02_build_pools.py --model llama`
-  - Then: `git add data` → `git commit -m "data"` → `git push`
-- **Do not change the library versions** in `requirements.txt` on only one laptop.
-- **Do not edit `configs/`** during a run.
-- `artifacts/` (teacher data, adapters) stays local and is not committed.
+The code is released under the [MIT License](LICENSE). The models and datasets it uses keep their own licenses.
