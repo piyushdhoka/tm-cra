@@ -1,4 +1,4 @@
-# large or machine-specific outputs (teacher data, adapters) — regenerate per laptop
+# large or machine-specific outputs (teacher data, adapters)
 artifacts/
 data_fixture/
 results/smoke/
@@ -9,12 +9,21 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 venv/
+.venv-*/
+.superpowers/
 
 # local-only folders, never pushed
 ieee_access/
 paper/
-arxiv/
 method-x/
 
-# local working notes (planning documents), never pushed
+# local working notes, never pushed
 notes/
+
+# the LaTeX source of the paper is kept locally, not in the repository
+arxiv/
+
+# paper material is kept locally, never pushed
+paper.pdf
+CITATION.cff
+docs/

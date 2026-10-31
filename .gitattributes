@@ -1,0 +1,2 @@
+# keep recovered teacher files byte-identical so SHA256SUMS stays valid on every OS
+data/teacher/** -text

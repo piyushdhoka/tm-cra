@@ -1,14 +1,12 @@
-# Runs on the RTX 4060 laptop.
 # Ungated public mirror of meta-llama/Llama-3.2-1B-Instruct (same architecture: 16 blocks, d=2048):
 # no Hugging Face account, token or CLI login needed. Disclose the mirror in the paper.
 name: llama
 model_id: unsloth/Llama-3.2-1B-Instruct
-device_note: RTX 4060 Laptop
 # Pruning level calibrated in stage 04 (2026-10-05): removing 4 blocks (25%) left 5 of 6 capabilities at
 # chance, so damage could not discriminate skills. Kept as evidence in results/llama/diagnosis_k4/.
 prune_main: 2      # 16 blocks -> 14 (12.5%)
 prune_light: 1     # 16 blocks -> 15 (diagnosis only)
 
 main:
-  # 4.48M = 1M heal + 3.48M pilot tokens: the compute-matched uniform baseline (run with 07_main.py --only uniform)
+  # 4.48M = 1M heal + 3.48M pilot tokens: the token-matched uniform baseline (run with 07_main.py --only uniform)
   budget_sweep: [4480000]

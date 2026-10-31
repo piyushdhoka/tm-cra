@@ -1,5 +1,5 @@
 """Verify that every external dataset is reachable and has the fields our builders expect.
-Downloads only small pieces; run once per laptop before stage 1. Exits non-zero on any failure."""
+Downloads only small pieces; run once per machine before stage 1. Exits non-zero on any failure."""
 import _bootstrap  # noqa: F401
 import json
 import sys

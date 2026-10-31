@@ -1,6 +1,6 @@
 """Stage 8: aggregate every available model into paper tables (CSV + Markdown) and figures.
 
-Run on either laptop after syncing results/ via git. Uses whatever models have finished.
+Run after all model results are in results/. Uses whatever models have finished.
 """
 import _bootstrap  # noqa: F401
 import argparse

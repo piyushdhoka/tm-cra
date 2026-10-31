@@ -1,7 +1,6 @@
 # End-to-end smoke test with a tiny random model and fixture data. Checks wiring only; numbers are meaningless.
 name: smoke
 model_id: hf-internal-testing/tiny-random-LlamaForCausalLM
-device_note: any (CPU ok)
 dtype: float32
 prune_main: 1
 prune_light: 1

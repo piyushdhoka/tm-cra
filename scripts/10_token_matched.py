@@ -1,4 +1,4 @@
-"""Stage 10: compute-matched comparison. RAH and the baselines at the 1M-token heal (3 seeds) against uniform healing that
+"""Stage 10: token-matched comparison. RAH and the baselines at the 1M-token heal (3 seeds) against uniform healing that
 also gets the pilot tokens (4.48M = 1M + 3.48M; every available seed of it). Paired bootstrap over test items within each
 capability on the primary metrics (capped mean retention, worst-case retention), seeds pooled through per-item means."""
 import _bootstrap  # noqa: F401
@@ -74,8 +74,8 @@ def main():
             rows.append(row)
     df = pd.DataFrame(rows)
     out = REPO / "results" / "analysis"
-    df.to_csv(out / "compute_matched.csv", index=False)
-    (out / "compute_matched.md").write_text(df.round(3).to_markdown(index=False), encoding="utf-8")
+    df.to_csv(out / "token_matched.csv", index=False)
+    (out / "token_matched.md").write_text(df.round(3).to_markdown(index=False), encoding="utf-8")
     cols = ["model", "method", "seeds", "capped_mean", "worst", "d_capped_vs_cm", "p_capped", "d_worst_vs_cm", "p_worst"]
     print(df[[c for c in cols if c in df]].round(3).to_string(index=False))
 

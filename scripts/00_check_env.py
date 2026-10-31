@@ -22,9 +22,9 @@ def main():
         "gpu_mem_gb": round(torch.cuda.get_device_properties(0).total_memory / 2**30, 1) if torch.cuda.is_available() else None,
         "bf16": torch.cuda.is_available() and torch.cuda.is_bf16_supported(),
         **{k: version(k) for k in ["transformers", "peft", "datasets", "accelerate", "jsonschema", "scipy", "lm_eval"]},
-        "model_id": cfg["model_id"], "device_note": cfg.get("device_note"),
+        "model_id": cfg["model_id"],
     }
-    assert transformers.__version__ == "4.56.2", "pin transformers==4.56.2 on both laptops (requirements.txt)"
+    assert transformers.__version__ == "4.56.2", "pin transformers==4.56.2 (requirements.txt)"
     write_json(p["results"] / "env.json", env)
     print(env)
 

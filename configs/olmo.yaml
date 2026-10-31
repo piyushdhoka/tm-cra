@@ -2,7 +2,6 @@
 # no Hugging Face account, token or CLI login needed.
 name: olmo
 model_id: allenai/OLMo-2-0425-1B-Instruct
-device_note: RTX 4060 Laptop
 # Starting guesses, NOT yet calibrated. Same depth as Llama-3.2-1B, where removing 4 blocks collapsed 5 of 6
 # capabilities to chance, so start at 2. Run stage 04 first (python scripts/04_diagnose.py --model olmo) and
 # check that capabilities are damaged but not all at chance; also check the UNPRUNED baseline is above chance
@@ -11,5 +10,5 @@ prune_main: 2      # 16 blocks -> 14 (12.5%)
 prune_light: 1     # 16 blocks -> 15 (diagnosis only)
 
 main:
-  # 4.48M = 1M heal + 3.48M pilot tokens: the compute-matched uniform baseline (run with 07_main.py --only uniform)
+  # 4.48M = 1M heal + 3.48M pilot tokens: the token-matched uniform baseline (run with 07_main.py --only uniform)
   budget_sweep: [4480000]

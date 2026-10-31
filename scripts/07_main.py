@@ -1,7 +1,7 @@
 """Stage 7: main comparison on the TEST split (core methods x seeds, extras/ablations/budget sweep x 1 seed).
 Every run is resumable: finished runs are skipped, so the script can be re-launched after a crash.
 
-Extra seeds for the compute-matched heal, e.g.:
+Extra seeds for the token-matched heal, e.g.:
     python scripts/07_main.py --model qwen --only uniform --budgets 4480000 --sweep-seeds 1 2"""
 import _bootstrap  # noqa: F401
 
