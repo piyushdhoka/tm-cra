@@ -1879,3 +1879,265 @@ The goal is to make the following statement defensible to a skeptical Neurocompu
 
 If the repository and experiments support that sentence honestly, the project has a coherent Neurocomputing-level story. If they do not, report why rather than tuning the study until they appear to.
 
+---
+
+# 36. Review amendment — strengthen the central confirmatory experiment
+
+This section amends the earlier tier plan. Where it conflicts with the earlier run matrix, this section takes precedence for the Neurocomputing confirmatory study. The existing sections remain as provenance for how the plan developed.
+
+The central token-accounting claim must not depend mainly on historical runs produced under mixed environments. The new standardized environment must contain a complete comparison among:
+
+- `uniform@1M`;
+- `worst_first@1M`;
+- `damage_prop@1M`;
+- `rah@1M` using the frozen pilot-derived allocation and selected scope;
+- `uniform@matched_total`, where the planned budget equals the final RAH healing budget plus every training token spent on the RAH pilots used to select its mixture and scope.
+
+For the primary confirmatory models, use three independently seeded final healing runs for every condition. Run in-domain, SVAMP, and IFBench evaluation in the same model session. Evaluate the unpruned and pruned reference models on every frozen suite as well.
+
+## 36.1 Recommended breadth
+
+Preferred design if resources permit:
+
+```text
+4 models × 5 healing conditions × 3 seeds = 60 final healing runs
+```
+
+If the matched-total runs are counted separately by their larger budget:
+
+```text
+4 models × 4 conditions × 3 seeds × 1M       = 48.00M planned tokens
+4 models × 1 condition  × 3 seeds × 4.48M    = 53.76M planned tokens
+standardized pilot suite, if rerun for all models = 13.92M planned tokens
+```
+
+This full standardized design is the strongest option, but it is substantially more expensive than the original Tier-2 plan.
+
+Minimum defensible design if GPU budget is constrained:
+
+- use Llama and Qwen as the prospectively selected primary confirmatory families;
+- run all five conditions with three seeds in one standardized environment;
+- run unpruned and pruned references on all evaluation suites;
+- use SmolLM2 and OLMo as audited breadth/replication evidence, clearly distinguishing historical and new results;
+- expand all five conditions to SmolLM2 and OLMo if the historical reproducibility audit fails or if resources permit.
+
+Do not call a one-seed 4.48M run a confirmatory token-matched comparison. A one-seed run is an environment audit or exploratory result.
+
+## 36.2 Pilot accounting and amortization
+
+The primary token-matched comparison assumes one planning exercise produces one healed model:
+
+```text
+RAH total planned training tokens = pilot tokens + final healing tokens
+```
+
+Also report an explicit amortization sensitivity analysis. If one frozen pilot plan is reused for `K` subsequent heals, its nominal average training-token cost per healed model is:
+
+```text
+final_heal_tokens + pilot_tokens / K
+```
+
+This is an accounting sensitivity analysis only. Do not claim that a plan transfers across datasets, checkpoints, pruning cuts, or deployment contexts unless that reuse is experimentally tested.
+
+Training-token matching is not compute matching. Record diagnostic inference, teacher generation, pilot evaluation, wall-clock time, GPU-hours, peak memory, and adaptation scope separately. These quantities may explain differences even when training-token totals are equal.
+
+---
+
+# 37. Review amendment — novelty and external validity
+
+The manuscript must explain how TM-CRA differs from prior capability-aware recovery and adaptive data-allocation work. At minimum, the related-work and experiments must discuss:
+
+- PASER and other post-pruning data-selection methods;
+- Sheared LLaMA / dynamic data-mixture approaches;
+- ShortGPT and Shortened LLaMA depth-pruning and retraining comparisons;
+- recent post-pruning reconstruction, distillation, and recovery studies available at submission time.
+
+The novelty claim should be limited to the contribution actually supported:
+
+> TM-CRA jointly reports nominal healing-budget performance, total adaptation-token performance, capability-specific recovery, OOD transfer, pilot uncertainty, and realized deployment efficiency under a frozen reproducible protocol.
+
+Preferred strengthening experiment: add one independently motivated published recovery/data-selection method under TM-CRA. If its original implementation cannot be applied faithfully, document every adaptation and name it as an adapted baseline. Do not relabel Damage-Proportional as PASER or another published method.
+
+If no external planner can be reproduced within available resources, explicitly narrow the empirical claim to a case study of RAH and simple allocation policies. Do not imply that the experiment establishes the behavior of all recovery planners.
+
+---
+
+# 38. Review amendment — statistical estimands and seed interpretation
+
+Define each estimand before implementing the bootstrap. In particular, distinguish:
+
+```text
+worst_of_seed_average = min_c mean_s retention[s, c]
+average_seed_worst    = mean_s min_c retention[s, c]
+```
+
+These are different quantities. Select one as primary in the frozen protocol and report the other descriptively. Apply the same care to capped-mean retention: compute the metric at the per-seed level before summarizing seed variability unless the protocol explicitly defines another estimand.
+
+Required statistical behavior:
+
+- preserve method, seed, capability, and item identity;
+- pair common evaluation items within method comparisons;
+- report per-seed effects and descriptive seed spread;
+- use hierarchical resampling only for the estimand it actually represents;
+- state whether uncertainty in the unpruned denominator is held fixed or resampled;
+- apply Holm correction within each pre-specified confirmatory family;
+- report effect sizes, confidence intervals, raw p-values, adjusted p-values, and family identifiers;
+- never interpret three seeds as providing high-precision evidence about training randomness;
+- never interpret final-heal seeds that share one pilot plan as evidence of pilot-plan stability.
+
+Math-only pilot repetitions measure the stability of the math recovery curve, not the complete RAH planner. Phrase that conclusion narrowly. If planner stability becomes a primary claim, repeat enough of the complete pilot process to observe allocation and scope variability.
+
+The README statement that commit `73e8582` fixed metrics “before any test result existed” must be corrected. The defensible statement is narrower: the primary metrics were recorded before the relevant RAH test results, subject to verification from Git history. New Neurocomputing comparisons and analysis families must be prospectively frozen in the versioned protocol before their results are inspected.
+
+---
+
+# 39. Review amendment — OOD, severity, and safety boundaries
+
+SVAMP and IFBench support conclusions about two held-out benchmark families. They do not establish recovery of every deployment capability. Use “out-of-domain benchmark transfer” rather than universal “capability restoration.”
+
+Before method-level OOD results are inspected:
+
+- verify that each unpruned model scores materially above the relevant floor;
+- freeze generation limits, prompt templates, checker versions, dataset revisions, item IDs, and exclusions;
+- verify that OOD items and near-duplicates do not occur in healing pools or selection inputs;
+- freeze the handling of invalid outputs and near-zero unpruned denominators;
+- record absolute scores prominently alongside ratios.
+
+Promote the second pruning severity from a cosmetic extension to an important generalization check. The main cuts represent different percentages of depth across families, so family and severity effects can be confounded. At minimum, run the light cut on Llama and Qwen with Uniform and Worst-First across three seeds; add RAH only if a new light-cut pilot plan is generated without reusing main-cut test information.
+
+The existing 240-response refusal-classifier validation is evidence that must be audited and reported, not ignored. Record annotator count, independence, instructions, disagreement handling, sampling coverage, and whether labels were created blind to model/method/classifier output. Keep the phrase-based refusal score labelled as a validated heuristic rather than a complete safety evaluation.
+
+---
+
+# 40. Revised A100 time and execution budget
+
+These estimates assume one A100 40 GB, successful BF16 execution, and the current expected 15–35 minute training-plus-existing-evaluation time for a 1M-token healing run. Replace them after the first measured 300k and 1M runs.
+
+## 40.1 Original plan through Tier 2
+
+```text
+Environment, smoke tests, and calibration:     1–3 A100 hours
+Tier-1 1M healing jobs:                        7–15 A100 hours
+Selected RAH OOD jobs:                         2–4 A100 hours
+Pilot stability jobs:                          2–5 A100 hours
+Two 4.48M environment-audit jobs:              2–5 A100 hours
+OOD evaluation and efficiency benchmarking:    2–6 A100 hours
+Expected rerun/debug allowance:                 4–8 A100 hours
+```
+
+Practical total through Tier 2: **approximately 15–30 A100 hours before contingency, or 20–38 hours with contingency**.
+
+Tier 3 adds approximately **4–8 A100 hours**.
+
+## 40.2 Strengthened standardized confirmatory design
+
+The full four-model, five-condition, three-seed design in Section 36 should be budgeted at approximately **40–75 A100 hours**, including OOD evaluation, standardized pilots where required, calibration, and reasonable reruns.
+
+Engineering, unit tests, dataset preparation, analysis, and export work require approximately **25–45 focused hours**, mostly without occupying the A100. A realistic end-to-end calendar estimate is **5–8 working days** with a persistent machine and no major reproducibility failure.
+
+Hosted Colab runtimes are temporary. Every job must write atomically to persistent storage, and the launcher must resume from manifests after runtime loss. Plan for multiple runtime sessions rather than assuming a single uninterrupted run.
+
+---
+
+# 41. Secure A100 access and SSH requirements
+
+## 41.1 Preferred execution environment
+
+A dedicated Google Compute Engine A100 VM, Colab Enterprise runtime, or another persistent Linux A100 host is preferred. Ordinary hosted Colab is optimized for interactive notebooks, has variable lifetime/resource limits, and may restrict remote-control workflows depending on the plan and compute-unit balance.
+
+Never share any of the following in chat or commit them to the repository:
+
+- Google account password;
+- browser cookies or session tokens;
+- private SSH key;
+- Colab authentication token;
+- GitHub personal access token;
+- Hugging Face token;
+- cloud service-account private key.
+
+Do not share a Google account or provide access by transferring account credentials. Any remote access must be authorized by the platform and the account owner.
+
+## 41.2 Information required for direct SSH to a dedicated host
+
+Provide only:
+
+```text
+host/IP:
+SSH port:
+Linux username:
+repository URL:
+branch or exact commit:
+persistent work directory:
+persistent results directory:
+sudo available: yes/no
+internet egress to GitHub/Hugging Face: yes/no
+GPU type and VRAM:
+system RAM:
+free disk space:
+runtime/VM expiration time, if any:
+```
+
+Authentication should use a temporary SSH key created for this project:
+
+1. Generate the key pair on the client that will connect.
+2. Add only its public key to the server user's `~/.ssh/authorized_keys`.
+3. Keep the private key on the connecting client; never paste it into chat or store it in the repository.
+4. Restrict the account to the project workspace when practical.
+5. Remove the public key after the project is complete.
+
+Before any experiment, capture:
+
+```bash
+nvidia-smi
+python --version
+git --version
+df -h
+free -h
+```
+
+Recommended capacity:
+
+- NVIDIA A100 with at least 40 GB VRAM;
+- 25 GB minimum system RAM, preferably 40 GB or more;
+- at least 100 GB persistent free disk, preferably 150 GB;
+- an environment that can be pinned rather than silently upgraded;
+- persistent storage that survives notebook/runtime termination.
+
+The current public model set should not require a Hugging Face token. If a future gated resource requires one, the owner must place it in the host's secret/environment mechanism. The experiment commands should read it from the environment without printing it.
+
+## 41.3 Hosted Google Colab workflow
+
+For a hosted Colab A100, prefer an owner-operated notebook:
+
+1. The owner starts the A100 runtime and confirms `nvidia-smi`.
+2. The notebook clones the pinned repository commit.
+3. The owner mounts or configures persistent storage.
+4. Setup, audit, smoke-test, and launcher commands are executed from notebook cells.
+5. Logs and results are written to persistent storage after every job.
+6. The owner supplies outputs/logs for diagnosis if direct authorized SSH is unavailable.
+
+If the selected paid Colab product explicitly permits SSH/remote control, provide the authorized SSH endpoint fields listed above and use public-key authentication. Do not create reverse tunnels, proxies, or account-sharing arrangements merely to bypass Colab restrictions. If persistent direct access is required, move the workload to a dedicated GCE VM or Colab Enterprise environment.
+
+---
+
+# 42. Revised A100 execution sequence
+
+Use the A100 only after the engineering gates pass:
+
+1. complete P0/P1 engineering and unit tests without expensive training;
+2. freeze `experiments/neurocomputing_v1.yaml` and its hash;
+3. provision the standardized A100 environment;
+4. run environment, provenance, and data-leakage audits;
+5. run one 30k smoke job;
+6. run one 300k calibration job;
+7. run one 1M calibration job and replace planning estimates with measured throughput;
+8. run the Llama/Qwen standardized reproducibility gate;
+9. investigate any material discrepancy before launching the matrix;
+10. execute the frozen primary confirmatory jobs;
+11. verify job counts, hashes, seeds, IDs, realized tokens, and manifests without inspecting results for method-selection changes;
+12. execute secondary stability, efficiency, and severity jobs;
+13. run the final analysis and export pipeline;
+14. generate the acceptance-readiness PASS/WARN/FAIL report.
+
+Do not run the complete matrix interactively as one fragile notebook cell. The launcher must create one recoverable job record at a time and safely resume after interruption.
+
